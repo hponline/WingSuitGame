@@ -1163,10 +1163,10 @@ MonoBehaviour:
   - {fileID: 3358121957145106268, guid: 1b4514507d0c76f47a96a3b9e268ab9e, type: 3}
   - {fileID: 6788961323230425148, guid: 8300aec6dda54c54a8f4785c04843c52, type: 3}
   spawnOrigin: {fileID: 1316916666}
-  roadLength: 162.6267
-  nextSpawnMountZ: 0
   speed: 20
-  initializePlatformCount: 5
+  player: {fileID: 1275193831}
+  mapPoolSize: 5
+  despawnPlatform: 110
 --- !u!4 &1911656924
 Transform:
   m_ObjectHideFlags: 0

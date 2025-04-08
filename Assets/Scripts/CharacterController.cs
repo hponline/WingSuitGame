@@ -26,8 +26,7 @@ public class CharacterController : MonoBehaviour
         Vector3 targetPosition = transform.position; // Hedef yol
         targetPosition.x = desiredLane * laneDistance;
 
-        transform.position = Vector3.Lerp(transform.position, targetPosition, laneChangeSpeed * Time.deltaTime);
-        //transform.position += moveSpeed * Time.deltaTime * -transform.forward;
+        transform.position = Vector3.Lerp(transform.position, targetPosition, laneChangeSpeed * Time.deltaTime);        
     }
 
     private void OnTriggerEnter(Collider other)
