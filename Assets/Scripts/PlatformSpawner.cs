@@ -16,6 +16,7 @@ public class PlatformSpawner : MonoBehaviour
     public int mapPoolSize = 5;
     public float despawnPlatform = 300f;
 
+
     private void Awake()
     {
         for (int i = 0; i < mapPoolSize; i++)
@@ -34,11 +35,6 @@ public class PlatformSpawner : MonoBehaviour
         {
             CreatePlatform();
         }
-    }
-
-    private void Start()
-    {
-        
     }
 
     private void Update()

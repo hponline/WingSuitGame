@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
@@ -9,24 +7,41 @@ public class CharacterController : MonoBehaviour
     public int desiredLane = 0; // Þerit 0 ortada demektir.
     public int laneDistance = 12; // Yatay Þerit uzunlugu
 
+    Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
-            desiredLane++;
+            animator.SetTrigger("MoveRight");
+            
+            if (desiredLane < 1)
+            {                
+                desiredLane++;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
-            desiredLane--;
+            animator.SetTrigger("MoveLeft");
+            if (desiredLane > -1)
+            {                
+                desiredLane--;
+            }
         }
+
         desiredLane = Mathf.Clamp(desiredLane, -1, 1);
 
         Vector3 targetPosition = transform.position; // Hedef yol
         targetPosition.x = desiredLane * laneDistance;
 
-        transform.position = Vector3.Lerp(transform.position, targetPosition, laneChangeSpeed * Time.deltaTime);        
+        transform.position = Vector3.Lerp(transform.position, targetPosition, laneChangeSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,7 +49,7 @@ public class CharacterController : MonoBehaviour
         if (other.gameObject.CompareTag("Coin"))
         {
             GameManager.gameManagerInstance.playerCoin++;
-            Destroy(other.gameObject);            
+            Destroy(other.gameObject);
         }
     }
 }
