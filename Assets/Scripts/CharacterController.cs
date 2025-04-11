@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class CharacterController : MonoBehaviour
 {
@@ -9,29 +11,28 @@ public class CharacterController : MonoBehaviour
 
     Animator animator;
 
+
     private void Start()
     {
         animator = GetComponent<Animator>();
-
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-        {
-            animator.SetTrigger("MoveRight");
-            
+        {            
+            animator.CrossFade("MoveRight", 0.1f);
             if (desiredLane < 1)
-            {                
+            {
                 desiredLane++;
             }
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-        {
-            animator.SetTrigger("MoveLeft");
+        {            
+            animator.CrossFade("MoveLeft", 0.1f);
             if (desiredLane > -1)
-            {                
+            {
                 desiredLane--;
             }
         }
@@ -49,7 +50,8 @@ public class CharacterController : MonoBehaviour
         if (other.gameObject.CompareTag("Coin"))
         {
             GameManager.gameManagerInstance.playerCoin++;
-            Destroy(other.gameObject);
+            Destroy(other.gameObject);           
         }
     }
+
 }
